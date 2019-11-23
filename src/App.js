@@ -10,19 +10,34 @@ import Container from 'react-bootstrap/Container';
 function App() {
   return (
     <div className="main">
-      <header className="App-header">
-        <h1>kindlit</h1>
-        <h5 id="mainSubheader">send to kindle</h5>
-       
-        <input type="text" placeholder="Enter kindle email address" id="mainEmailInput"></input>
-        <Button variant="primary">Save email</Button>
-        <hr/>
+      <Container id="mainContainer">
+        <div class="mainRow">
+        <Image id="mainLogo" src={require('./assets/kindlit_logo.png')} />
+          <h1>kindlit</h1>
+          <h5 id="mainSubheader">send to kindle</h5>
+        </div>
+        <div class="mainRow">
+          <input
+            type="text"
+            placeholder="Enter kindle email address"
+            id="mainEmailInput"
+          ></input>
+          <Button variant="primary">Save email</Button>
+        </div>
 
-        <input type="text" placeholder="Book URL or title" id="mainBookInput"></input>
-        <Button variant="primary">Send to Kindle</Button>
-      <Image id="mainDragImage" src={require('./assets/drop.png')} />
-      <span id="mainDragMessage">drag and drop MOBI file</span>
-      </header>
+        <div class="mainRow">
+          <input
+            type="text"
+            placeholder="Book URL or title"
+            id="mainBookInput"
+          ></input>
+          <Button variant="primary">Send to Kindle</Button>
+        </div>
+        <div class="mainRow">
+          <Image id="mainDragImage" src={require('./assets/drop.png')} />
+          <span id="mainDragMessage">drag and drop MOBI file</span>
+        </div>
+      </Container>
     </div>
   );
 }

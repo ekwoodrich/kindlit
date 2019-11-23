@@ -17,7 +17,22 @@
   color: white;
 }
 #mainDragImage {
-  width:80pt;
+  width:180px;
+}
+#mainContainer {
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+}
+#mainLogo {
+}
+.mainRow {
+  justify-content: center;
+  align-items: center;
+  margin-top:10px;
+  margin-bottom:10px;
+  text-align: center;
 }
 .App-link {
   color: #09d3ac;
