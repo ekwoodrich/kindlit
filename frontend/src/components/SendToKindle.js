@@ -12,13 +12,20 @@ class SendToKindle extends Component {
   }
   _sendUrlOrTitle = e => {
     console.log('send kindle' + this.state.text);
+    const formData = new FormData();
+
+    formData.append('text', this.state.text);
+    formData.append('email', this.props.email);
+    formData.append('book', this.state.file);
+
     fetch('http://localhost:8080/api/book/send', {
       method: 'post',
+      body: formData,
       headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
+        //'Content-Type': 'application/json'
+        //'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({ text: this.state.text, email: this.props.email })
+      attachment: this.state.file
     })
       .then(function(response) {
         return response.json();

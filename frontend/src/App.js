@@ -51,7 +51,7 @@ class App extends React.Component {
           </div>
           {this.state.hasEmail && (
             <div className="mainRow">
-              <SendToKindle email={this.state.email} />
+              <SendToKindle file={this.state.file} email={this.state.email} />
             </div>
           )}
         </Container>
