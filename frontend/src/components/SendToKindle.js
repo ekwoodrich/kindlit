@@ -10,6 +10,11 @@ class SendToKindle extends Component {
       file: null
     };
   }
+  _changeFile = e => {
+    this.setState({ file: null });
+    this.props.fileChanged();
+    e.preventDefault();
+  };
   _sendUrlOrTitle = e => {
     console.log('send kindle' + this.state.text);
     const formData = new FormData();
@@ -40,6 +45,19 @@ class SendToKindle extends Component {
     return (
       <div>
         <div>
+          {this.state.file && (
+            <div>
+              {this.state.file.path}
+              <Button
+                onClick={this._changeFile}
+                className="ml-1"
+                variant="secondary"
+                size="sm"
+              >
+                Change
+              </Button>
+            </div>
+          )}
           {!this.state.file && (
             <div>
               <input
