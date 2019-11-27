@@ -1,8 +1,13 @@
 var express = require('express');
 var router = express.Router();
+const fs = require('fs');
+
+let secrets = JSON.parse(fs.readFileSync('./secrets.json'));
+console.log(secrets);
+
 var mailgun = require('mailgun-js')({
-  apiKey: 'key-d8a4508087f315106efdb5e55508465a',
-  domain: 'mg.kindlit.app'
+  apiKey: secrets.mailgun_api,
+  domain: secrets.mailgun_domain
 });
 
 router.get('/', function(req, res, next) {

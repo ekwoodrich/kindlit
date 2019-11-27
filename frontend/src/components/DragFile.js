@@ -3,10 +3,16 @@ import Image from 'react-bootstrap/Image';
 import Dropzone from 'react-dropzone';
 
 class DragFile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: ''
+    };
+  }
   render() {
     return (
       <div>
-        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+        <Dropzone onDrop={acceptedFiles => this.props.onFile(acceptedFiles)}>
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()}>

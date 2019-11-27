@@ -6,7 +6,8 @@ class SendToKindle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      file: null
     };
   }
   _sendUrlOrTitle = e => {
@@ -50,7 +51,14 @@ class SendToKindle extends Component {
             >
               Send to Kindle
             </Button>
-            <DragFile />
+            <DragFile
+              onFile={files => {
+                console.log(files);
+                if (files) {
+                  this.setState({ file: files[0] });
+                }
+              }}
+            />
           </div>
         )}
       </div>
