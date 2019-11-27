@@ -16,42 +16,48 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        hasEmail : true
-    }
+      hasEmail: true,
+      email: '',
+      text: '',
+      file: null
+    };
   }
   render() {
-    
-  return (
-    <div className="main">
-      <Navbar  expand="lg">
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="ml-auto navbar-dark">
-      <Nav.Link class="text-light"href="/about">About</Nav.Link>
-      <Nav.Link href="/privacy">Privacy</Nav.Link>
-      <Nav.Link href="https://github.com/ekwoodrich/kindlit">GitHub</Nav.Link>
-    </Nav>
-   
-  </Navbar.Collapse>
-</Navbar>
-      <Container id="mainContainer">
-        <div className="mainRow">
-        <Image id="mainLogo" src={require('./assets/kindlit_logo.png')} />
-          <h1>kindlit</h1>
-          <h5 id="mainSubheader">send to kindle</h5>
-        </div>
-        <div className="mainRow">
-          <EmailPicker/>
-        </div>
-        { this.state.hasEmail &&
+    return (
+      <div className="main">
+        <Navbar expand="lg">
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto navbar-dark">
+              <Nav.Link class="text-light" href="/about">
+                About
+              </Nav.Link>
+              <Nav.Link href="/privacy">Privacy</Nav.Link>
+              <Nav.Link href="https://github.com/ekwoodrich/kindlit">
+                GitHub
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <Container id="mainContainer">
           <div className="mainRow">
-            <SendToKindle/>
+            <Image id="mainLogo" src={require('./assets/kindlit_logo.png')} />
+            <h1>kindlit</h1>
+            <h5 id="mainSubheader">send to kindle</h5>
           </div>
-        }
-      </Container>
-    </div>
-  );
-
-}
+          <div className="mainRow">
+            <EmailPicker
+              emailChanged={email => this.setState({ email: email })}
+            />
+          </div>
+          {this.state.hasEmail && (
+            <div className="mainRow">
+              <SendToKindle email={this.state.email} />
+            </div>
+          )}
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default App;
