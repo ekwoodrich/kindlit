@@ -34,16 +34,16 @@ class App extends React.Component {
   </Navbar.Collapse>
 </Navbar>
       <Container id="mainContainer">
-        <div class="mainRow">
+        <div className="mainRow">
         <Image id="mainLogo" src={require('./assets/kindlit_logo.png')} />
           <h1>kindlit</h1>
           <h5 id="mainSubheader">send to kindle</h5>
         </div>
-        <div class="mainRow">
+        <div className="mainRow">
           <EmailPicker/>
         </div>
         { this.state.hasEmail &&
-          <div class="mainRow">
+          <div className="mainRow">
             <SendToKindle/>
           </div>
         }

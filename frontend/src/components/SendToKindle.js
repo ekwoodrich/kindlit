@@ -3,6 +3,11 @@ import Button from 'react-bootstrap/Button';
 import DragFile from './DragFile';
 
 class SendToKindle extends Component {
+
+  _sendUrlOrTitle = (e) => {
+    console.log("send kindle");
+    e.preventDefault();
+  }
   render() {
     return (
       <div>
@@ -12,7 +17,7 @@ class SendToKindle extends Component {
           id="mainBookInput"
           class="mainInput"
         ></input>
-        <Button className="ml-1" variant="primary">
+        <Button onClick={this._sendUrlOrTitle} className="ml-1" variant="primary">
           Send to Kindle
         </Button>
         <DragFile />

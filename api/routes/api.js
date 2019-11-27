@@ -8,7 +8,7 @@ router.get('/book/send', function(req, res, next) {
   res.send('book');
 });
 router.post('/book/send', function(req, res, next) {
-  res.send('book post');
+  res.send(req.body);
 });
 
 module.exports = router;
