@@ -10,6 +10,14 @@ class EmailPicker extends Component {
       savedEmail: JSON.parse(localStorage.getItem('email'))
     };
   }
+  _editEmail = e => {
+    console.log('email changed');
+    this.setState({ email: '' });
+    this.setState({ savedEmail: '' });
+    this.props.emailChanged(this.state.email);
+    localStorage.setItem('email', JSON.stringify(''));
+    e.preventDefault();
+  };
   _saveEmail = e => {
     console.log('save email');
     localStorage.setItem('email', JSON.stringify(this.state.email));
@@ -23,6 +31,14 @@ class EmailPicker extends Component {
         {this.state.savedEmail && (
           <div>
             <span>{this.state.savedEmail}</span>
+            <Button
+              onClick={this._editEmail}
+              className="ml-1"
+              variant="secondary"
+              size="sm"
+            >
+              Edit
+            </Button>
           </div>
         )}
         {!this.state.savedEmail && (
