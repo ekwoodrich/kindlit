@@ -2,28 +2,26 @@
   text-align: center;
 }
 body {
-
-  background-color: #282c34!important;
+  background-color: #282c34 !important;
 }
 
 .App-logo {
   height: 40vmin;
 }
 
-.navbar-light .navbar-nav .nav-link {  
-  color: white!important;
+.navbar-light .navbar-nav .nav-link {
+  color: white !important;
 }
 
 #mainDragMessage {
   font-size: 12pt;
-  margin-left:-20px;
+  margin-left: -20px;
 }
 
 .main {
 }
 #mainDragImage {
-  width:180px;
-  margin-left:-40px;
+  width: 180px;
 }
 #mainContainer {
   display: flex;
@@ -34,23 +32,23 @@ body {
   color: white;
   justify-content: center;
   align-items: center;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 #mainLogo {
 }
 .mainButton {
-  margin-left:10px;
+  margin-left: 10px;
 }
 .mainInput {
-  padding-left:5px;
+  padding-left: 5px;
   font-size: 15pt;
 }
 .mainRow {
   justify-content: center;
   align-items: center;
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
 }
 .App-link {

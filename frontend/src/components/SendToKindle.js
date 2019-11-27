@@ -39,35 +39,42 @@ class SendToKindle extends Component {
   render() {
     return (
       <div>
-        {this.props.email && (
-          <div>
-            <input
-              type="text"
-              placeholder="Book URL or title"
-              id="mainBookInput"
-              class="mainInput"
-              onChange={e => {
-                this.setState({ text: e.target.value });
-              }}
-              value={this.state.text}
-            ></input>
-            <Button
-              onClick={this._sendUrlOrTitle}
-              className="ml-1"
-              variant="primary"
-            >
-              Send to Kindle
-            </Button>
-            <DragFile
-              onFile={files => {
-                console.log(files);
-                if (files) {
-                  this.setState({ file: files[0] });
-                }
-              }}
-            />
-          </div>
-        )}
+        <div>
+          {!this.state.file && (
+            <div>
+              <input
+                type="text"
+                placeholder="Book URL or title"
+                id="mainBookInput"
+                class="mainInput"
+                onChange={e => {
+                  this.setState({ text: e.target.value });
+                }}
+                value={this.state.text}
+              ></input>
+              <DragFile
+                onFile={files => {
+                  console.log(files);
+                  if (files) {
+                    this.props.fileChanged(files[0]);
+                    this.setState({ file: files[0] });
+                  }
+                }}
+              />
+            </div>
+          )}
+          {this.state.file && (
+            <div>
+              <Button
+                onClick={this._sendUrlOrTitle}
+                className="ml-1"
+                variant="primary"
+              >
+                Send to Kindle
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -41,7 +41,7 @@ class App extends React.Component {
         <Container id="mainContainer">
           <div className="mainRow">
             <Image id="mainLogo" src={require('./assets/kindlit_logo.png')} />
-            <h1>kindlit</h1>
+            <h1>KindLit</h1>
             <h5 id="mainSubheader">send to kindle</h5>
           </div>
           <div className="mainRow">
@@ -51,7 +51,11 @@ class App extends React.Component {
           </div>
           {this.state.hasEmail && (
             <div className="mainRow">
-              <SendToKindle file={this.state.file} email={this.state.email} />
+              <SendToKindle
+                fileChanged={file => this.setState({ file: file })}
+                file={this.state.file}
+                email={this.state.email}
+              />
             </div>
           )}
         </Container>
