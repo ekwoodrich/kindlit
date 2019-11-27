@@ -4,10 +4,27 @@ import DragFile from './DragFile';
 
 class SendToKindle extends Component {
 
-  _sendUrlOrTitle = (e) => {
-    console.log("send kindle");
-    e.preventDefault();
+  constructor(props) {
+    super(props);
+    this.state = {
+      'text' : '',
+    }
   }
+  _sendUrlOrTitle = e => {
+    console.log('send kindle');
+    fetch('http://localhost:8080/book/send', {
+      method: 'post',
+      body: JSON.stringify(this.state.text)
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log('sent book', data.html_url);
+      });
+    e.preventDefault();
+  };
+
   render() {
     return (
       <div>
@@ -16,8 +33,14 @@ class SendToKindle extends Component {
           placeholder="Book URL or title"
           id="mainBookInput"
           class="mainInput"
+          onChange={e => {this.setState({'text' : e.target.value})}}
+          value={this.state.text}
         ></input>
-        <Button onClick={this._sendUrlOrTitle} className="ml-1" variant="primary">
+        <Button
+          onClick={this._sendUrlOrTitle}
+          className="ml-1"
+          variant="primary"
+        >
           Send to Kindle
         </Button>
         <DragFile />
