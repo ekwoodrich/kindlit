@@ -15,11 +15,6 @@ class EmailPicker extends Component {
     this.setState({savedEmail : this.state.email});
     e.preventDefault();
   }
-  _checkSavedEmail = () => {
-    let email = localStorage.getItem('email');
-    console.log(email)
-      return email;
-  }
   render() {
     return (
       <div>
