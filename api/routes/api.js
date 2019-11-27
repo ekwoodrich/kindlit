@@ -32,13 +32,14 @@ router.get('/book/send', function(req, res, next) {
 });
 router.post('/book/send', upload.single('book'), function(req, res, next) {
   let email = req.body.email;
-  let text = req.body.text;
+  let text = req.body.text ? req.body.text : 'kindlet ' + uuidv1();
   console.log(email);
   console.log(req.file.path);
   console.log('got a book');
 
   const buffer = readChunk.sync(req.file.path, 0, fileType.minimumBytes);
   console.log(fileType(buffer));
+
   let data = {
     from: 'noreply@kindlit.app',
     to: email,
