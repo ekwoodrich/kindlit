@@ -13,31 +13,24 @@ router.get('/book/send', function(req, res, next) {
 });
 router.post('/book/send', function(req, res, next) {
   console.log(req.body);
-  let req_json = JSON.parse(req.body);
-  let email = req_json.email;
+  let email = req.body.email;
+  let text = req.body.text;
+  console.log(email);
 
   console.log('got a book');
   let data = {
-    //Specify email data
     from: 'noreply@kindlit.app',
-    //The email to contact
     to: email,
-    //Subject and text data
-    subject: 'Hello from Mailgun',
-    html: 'this is a test'
+    subject: text,
+    html: text
   };
-  //Invokes the method to send emails given the above data with the helper library
   mailgun.messages().send(data, function(err, body) {
-    //If there is an error, render the error page
     if (err) {
-      res.render('error', { error: err });
-      console.log('got an error: ', err);
-    }
-    //Else we can greet    and leave
-    else {
-      //Here "submitted.jade" is the view file for this landing page
-      //We pass the variable "email" from the url parameter in an object rendered by Jade
-      res.render('submitted', { email: req.params.email });
+      res.send(JSON.stringify({ result: 'error', error: { error: err } }));
+
+      console.log('error: ', err);
+    } else {
+      res.send(JSON.stringify({ result: 'success' }));
       console.log(body);
     }
   });

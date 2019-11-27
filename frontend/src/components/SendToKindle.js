@@ -13,6 +13,10 @@ class SendToKindle extends Component {
     console.log('send kindle' + this.state.text);
     fetch('http://localhost:8080/api/book/send', {
       method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
       body: JSON.stringify({ text: this.state.text, email: this.props.email })
     })
       .then(function(response) {
