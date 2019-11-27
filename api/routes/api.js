@@ -8,7 +8,9 @@ router.get('/book/send', function(req, res, next) {
   res.send('book');
 });
 router.post('/book/send', function(req, res, next) {
-  res.send(req.body);
+  console.log("got a book");
+  res.send(JSON.stringify({'result' : 'success'}));
 });
 
 module.exports = router;
+;

@@ -12,7 +12,7 @@ class SendToKindle extends Component {
   }
   _sendUrlOrTitle = e => {
     console.log('send kindle');
-    fetch('http://localhost:8080/book/send', {
+    fetch('http://localhost:8080/api/book/send', {
       method: 'post',
       body: JSON.stringify(this.state.text)
     })
@@ -20,7 +20,7 @@ class SendToKindle extends Component {
         return response.json();
       })
       .then(function(data) {
-        console.log('sent book', data.html_url);
+        console.log('sent book', data);
       });
     e.preventDefault();
   };
