@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "deploy": "docker build -t ekwoodrich/kindlit_api .; gcloud builds submit --tag gcr.io/kindlit/kindlit_api"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
