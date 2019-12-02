@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import DragFile from './DragFile';
+import { API_URL } from '../constants';
 
 class SendToKindle extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class SendToKindle extends Component {
     formData.append('email', this.props.email);
     formData.append('book', this.state.file);
 
-    fetch('http://localhost:8080/api/book/send', {
+    fetch(API_URL + '/api/book/send', {
       method: 'post',
       body: formData,
       headers: {
