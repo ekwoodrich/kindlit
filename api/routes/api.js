@@ -49,7 +49,9 @@ router.post('/book/send', upload.single('book'), function(req, res, next) {
   };
   mailgun.messages().send(data, function(err, body) {
     if (err) {
-      res.send(JSON.stringify({ result: 'error', error: { error: err } }));
+      res.send(
+        JSON.stringify({ result: 'error', error: { message: err, code: 1 } })
+      );
 
       console.log('error: ', err);
     } else {

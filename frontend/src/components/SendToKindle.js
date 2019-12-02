@@ -2,19 +2,34 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import DragFile from './DragFile';
 import { API_URL } from '../constants';
+import InputMode from './InputMode';
+import FailureMode from './FailureMode';
+import SuccessMode from './SuccessMode';
 
 class SendToKindle extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
-      file: null
+      file: null,
+      mode: 'input'
     };
   }
+  _setMode = mode => {
+    this.setState({ mode: mode });
+  };
   _changeFile = e => {
     this.setState({ file: null });
     this.props.fileChanged();
     e.preventDefault();
+  };
+  _addAnother = () => {
+    this._setMode('input');
+    this.setState({ file: null });
+    this.props.fileChanged();
+  };
+  _setFile = file => {
+    this.setState({ file: file });
   };
   _sendUrlOrTitle = e => {
     console.log('send kindle' + this.state.text);
@@ -24,6 +39,7 @@ class SendToKindle extends Component {
     formData.append('email', this.props.email);
     formData.append('book', this.state.file);
 
+    const setMode = this._setMode;
     fetch(API_URL + '/api/book/send', {
       method: 'post',
       body: formData,
@@ -38,6 +54,8 @@ class SendToKindle extends Component {
       })
       .then(function(data) {
         console.log('sent book', data);
+        if (data.result == 'success') setMode('success');
+        else setMode('failure');
       });
     e.preventDefault();
   };
@@ -45,55 +63,26 @@ class SendToKindle extends Component {
   render() {
     return (
       <div>
-        <div>
-          {this.state.file && (
-            <div>
-              {this.state.file.path}
-              <Button
-                onClick={this._changeFile}
-                className="ml-1"
-                variant="secondary"
-                size="sm"
-              >
-                Change
-              </Button>
-            </div>
-          )}
-          {!this.state.file && (
-            <div>
-              <input
-                type="text"
-                placeholder="Book URL or title"
-                id="mainBookInput"
-                class="mainInput"
-                onChange={e => {
-                  this.setState({ text: e.target.value });
-                }}
-                value={this.state.text}
-              ></input>
-              <DragFile
-                onFile={files => {
-                  console.log(files);
-                  if (files) {
-                    this.props.fileChanged(files[0]);
-                    this.setState({ file: files[0] });
-                  }
-                }}
-              />
-            </div>
-          )}
-          {this.state.file && (
-            <div>
-              <Button
-                onClick={this._sendUrlOrTitle}
-                className="ml-1"
-                variant="primary"
-              >
-                Send to Kindle
-              </Button>
-            </div>
-          )}
-        </div>
+        {this.state.mode == 'input' && (
+          <div>
+            <InputMode
+              state={this.state}
+              onFileChange={this._changeFile}
+              onSend={this._sendUrlOrTitle}
+              setFile={this._setFile}
+            />
+          </div>
+        )}
+        {this.state.mode == 'failure' && (
+          <div>
+            <FailureMode tryAgain={this._addAnother} />
+          </div>
+        )}
+        {this.state.mode == 'success' && (
+          <div>
+            <SuccessMode addAnother={this._addAnother} />
+          </div>
+        )}
       </div>
     );
   }
