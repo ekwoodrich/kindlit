@@ -22,16 +22,6 @@ class InputMode extends Component {
           )}
           {!this.props.state.file && (
             <div>
-              <input
-                type="text"
-                placeholder="Book URL or title"
-                id="mainBookInput"
-                class="mainInput"
-                onChange={e => {
-                  this.setState({ text: e.target.value });
-                }}
-                value={this.props.state.text}
-              ></input>
               <DragFile
                 onFile={files => {
                   console.log(files);

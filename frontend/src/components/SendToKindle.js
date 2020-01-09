@@ -5,6 +5,8 @@ import { API_URL } from '../constants';
 import InputMode from './InputMode';
 import FailureMode from './FailureMode';
 import SuccessMode from './SuccessMode';
+import BookSearch from './BookSearch';
+import SearchButton from './SearchButton';
 
 class SendToKindle extends Component {
   constructor(props) {
@@ -27,6 +29,15 @@ class SendToKindle extends Component {
     this._setMode('input');
     this.setState({ file: null });
     this.props.fileChanged();
+  };
+  _setText = text => {};
+
+  _startSearch = () => {
+    console.log('search');
+    this._setMode('search');
+  };
+  _cancelSearch = () => {
+    this._setMode('input');
   };
   _setFile = file => {
     this.setState({ file: file });
@@ -63,8 +74,12 @@ class SendToKindle extends Component {
   render() {
     return (
       <div>
+        {this.state.mode == 'search' && (
+          <BookSearch cancelSearch={this._cancelSearch} />
+        )}
         {this.state.mode == 'input' && (
           <div>
+            {/* <SearchButton startSearch={this._startSearch} /> */}
             <InputMode
               state={this.state}
               onFileChange={this._changeFile}

@@ -25,7 +25,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="main">
-        <Navbar expand="lg">
+        {/* <Navbar expand="lg">
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto navbar-dark">
               <Nav.Link class="text-light" href="/about">
@@ -37,7 +37,7 @@ class App extends React.Component {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */}
         <Container id="mainContainer">
           <div className="mainRow">
             <Image id="mainLogo" src={require('./assets/kindlit_logo.png')} />

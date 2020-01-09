@@ -18,7 +18,7 @@ class DragFile extends Component {
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
                 <Image id="mainDragImage" src={require('../assets/drop.png')} />
-                <p>drag and drop MOBI or PDF</p>
+                <p id="mainDragMessage">drag and drop MOBI or PDF</p>
               </div>
             </section>
           )}

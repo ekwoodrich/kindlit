@@ -14,13 +14,13 @@ body {
 }
 
 #mainDragMessage {
-  font-size: 12pt;
-  margin-left: -20px;
+  font-size: 1.25rem;
 }
 
 .main {
 }
 #mainDragImage {
+  margin-top: 10px;
   width: 180px;
 }
 #mainContainer {
